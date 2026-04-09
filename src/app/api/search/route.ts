@@ -2,8 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { untCourses } from '@/db/schema';
 import { ilike } from 'drizzle-orm';
+import { auth } from '@/auth';
 
 export async function GET(request: NextRequest) {
+    // Auth check - only allow logged in @my.unt.edu users
+    const session = await auth();
+    if (!session) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const nameQuery = searchParams.get('name');
 

@@ -3,8 +3,13 @@
 import { db } from '@/lib/db'; 
 import { ilike, or } from 'drizzle-orm';
 import { untCourses } from '@/db/schema';
+import { auth } from '@/auth';
 
 export async function getProfessorsBySearch(searchTerm: string) {
+    // Auth check - only allow logged in @my.unt.edu users
+    const session = await auth();
+    if (!session) throw new Error('Unauthorized');
+
     if (!searchTerm) return [];
 
     try {
