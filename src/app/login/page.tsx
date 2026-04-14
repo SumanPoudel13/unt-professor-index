@@ -24,7 +24,7 @@ export default function LoginPage() {
         <div style={{ fontSize: '48px', marginBottom: '8px' }}>🦅</div>
         <h1 style={{ color: '#00853E', marginBottom: '8px' }}>UNT Professor Index</h1>
         <p style={{ color: '#666', marginBottom: '32px', fontSize: '14px' }}>
-          Sign in with your UNT Google account<br />
+          Sign in with your UNT account<br />
           <strong>(@my.unt.edu only)</strong>
         </p>
 
